@@ -73,3 +73,13 @@ $ helm install my-nginx stable/nginx-ingress --set rbac.create=true
 
 ```
 
+
+
+#### removed commands from travis
+```
+   # - docker build -t kiranvits/react-test -f ./client/Dockerfile.dev ./client
+
+# script:
+#     - docker run kiranvits/react-test npm run test -- --coverage
+
+```
