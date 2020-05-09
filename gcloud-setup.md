@@ -21,12 +21,55 @@ $ gcloud config set project $PROJECT_ID
 ```
 export PROJECT_ID='practiceproject-248407'
 export CLUSTER_NAME='k8s-practice'
+export ZONE='us-central1-a'
 
-gcloud beta container --project $PROJECT_ID clusters create $CLUSTER_NAME --zone "us-central1-a" --machine-type "n1-standard-1" --disk-size "20"  --num-nodes "3"
+gcloud beta container --project $PROJECT_ID clusters create $CLUSTER_NAME --zone $ZONE --machine-type "n1-standard-1" --disk-size "20"  --num-nodes "3"
 ```
 
 5. clean up command
 ```
-gcloud beta container --project $PROJECT_ID clusters delete $CLUSTER_NAME --zone "us-central1-a"
+gcloud beta container --project $PROJECT_ID clusters delete $CLUSTER_NAME --zone $ZONE
+```
+
+6. cretae secret
+```
+kubectl create secret generic pgpassword --from-literal PGPASSWORD=mypgpassword
+```
+
+7. Pre deployment Steps:
+
+```
+# create cluster
+
+# open shell and get cluster credentails
+
+# create scret for postgres password
+
+# the below section is invalid for helm v3
+<!-- # create service account for tiller to enable RBAC (Role Based Access Control)
+# servicce account name is given as tiller that can be any name
+$ kubectl create serviceaccount --namespace kube-system tiller
+serviceaccount/tiller created
+
+$ kubectl create clusterrolebinding tiller-cluster-rule --clusterrole=cluster-admin --serviceaccount=kube-system:tiller
+clusterrolebinding.rbac.authorization.k8s.io/tiller-cluster-rule created -->
+
+# install helm and initialize
+$ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+
+$ chmod 700 get_helm.sh
+
+$ ./get_helm.sh
+Error: could not find tiller
+Helm v3.2.1 is available. Changing from version .
+Downloading https://get.helm.sh/helm-v3.2.1-linux-amd64.tar.gz
+Preparing to install helm into /usr/local/bin
+helm installed into /usr/local/bin/helm
+
+$ helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+"stable" has been added to your repositories
+
+$ helm install my-nginx stable/nginx-ingress --set rbac.create=true
+
 ```
 
