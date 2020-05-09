@@ -5,7 +5,7 @@ env:
     global:
         - SHA=$(git rev-parse HEAD)
         - CLOUDSDK_CORE_DISABLE_PROMPTS=1
-before_insatll:
+before_install:
     - openssl aes-256-cbc -K $encrypted_9b3d2cfde564_key -iv $encrypted_9b3d2cfde564_iv -in personal-account.json.enc -out personal-account.json -d
     - curl https://sdk.cloud.google.com | bash > /dev/null;
     - source $HOME/google-cloud-sdk/path.bash.inc
@@ -15,10 +15,10 @@ before_insatll:
     - gcloud config set compute/zone us-central1-a
     - gcloud container clusters get-credentials k8s-practice
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    - docker build -t kiranvits/react-test -f ./client/Dockerfile.dev ./client
+    # - docker build -t kiranvits/react-test -f ./client/Dockerfile.dev ./client
 
-script:
-    - docker run kiranvits/react-test npm run test -- --coverage
+# script:
+#     - docker run kiranvits/react-test npm run test -- --coverage
 
 deploy:
     provider: script
