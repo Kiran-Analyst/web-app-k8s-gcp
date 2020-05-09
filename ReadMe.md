@@ -31,8 +31,9 @@ Pro Tip: You can add it automatically by running with --add.
 Make sure to add personal-account.json.enc to the git repository.
 Make sure not to add personal-account.json to the git repository.
 Commit all changes to your .travis.yml.
-```
 
-web-app-k8s-gcp $ cp ~/keys/personal-account.json.enc .
-web-app-k8s-gcp $ ls
+$ cp ~/keys/personal-account.json.enc .
+$ ls
 Read Me.md			client				gcloud-setup.md			personal-account.json.enc	server				worker
+
+```

@@ -1,6 +1,6 @@
-docker build -t kiranvits/multi-client:latest -t kiranvits/multi-client:$SHA -f ./client/Docketfile ./client
-docker build -t kiranvits/multi-server:latest -t kiranvits/multi-server:$SHA -f ./server/Docketfile ./server
-docker build -t kiranvits/multi-worker:latest -t kiranvits/multi-worker:$SHA -f ./worker/Docketfile ./worker
+docker build -t kiranvits/multi-client:latest -t kiranvits/multi-client:$SHA -f ./client/Dockerfile ./client
+docker build -t kiranvits/multi-server:latest -t kiranvits/multi-server:$SHA -f ./server/Dockerfile ./server
+docker build -t kiranvits/multi-worker:latest -t kiranvits/multi-worker:$SHA -f ./worker/Dockerfile ./worker
 # push latest images
 docker push kiranvits/multi-client:latest
 docker push kiranvits/multi-server:latest
