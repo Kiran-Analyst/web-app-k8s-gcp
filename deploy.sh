@@ -12,4 +12,4 @@ docker push kiranvits/multi-worker:$SHA
 # apply all configurations
 kubectl apply -f k8s
 # update image for a deployment if required
-kubectl set image deployment/client-deployment client=stephengrider/multi-client
+kubectl set image deployment/client-deployment client=kiranvits/multi-client:latest
